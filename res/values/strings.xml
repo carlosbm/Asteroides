@@ -4,5 +4,10 @@
     <string name="app_name">Asteroides</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title">Asteroides</string>
+    <string name="play">Jugar</string>
+    <string name="configure">Configurar</string>
+    <string name="about">Acerca de</string>
+    <string name="exit">Salir</string>
 
 </resources>
