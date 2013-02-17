@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/TextoAsteroides"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
@@ -13,21 +14,25 @@
      android:textSize="@dimen/activity_horizontal_margin" />
 
  <Button
+     style="@style/TextoAsteroides.Botones"
      android:layout_width="fill_parent"
      android:layout_height="wrap_content"
      android:text="@string/play" />
 
  <Button
+     style="@style/TextoAsteroides.Botones"
      android:layout_width="fill_parent"
      android:layout_height="wrap_content"
      android:text="@string/configure" />
 
  <Button
+     style="@style/TextoAsteroides.Botones"
      android:layout_width="fill_parent"
      android:layout_height="wrap_content"
      android:text="@string/about" />
 
  <Button
+     style="@style/TextoAsteroides.Botones"
      android:layout_width="fill_parent"
      android:layout_height="wrap_content"
      android:text="@string/exit" />
