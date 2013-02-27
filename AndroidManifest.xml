@@ -32,6 +32,10 @@
             android:name=".Preferencias"
             android:label="Pantalla de preferencias" >
         </activity>
+        <activity 
+            android:name=".Puntuaciones"
+            android:label="Lista de puntuaciones">
+        </activity>
     </application>
 
 </manifest>

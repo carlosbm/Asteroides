@@ -29,6 +29,7 @@
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:onClick="lanzarPuntuaciones"
                 android:text="@string/configure" />
         </TableRow>
 
@@ -43,6 +44,7 @@
             <Button
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:onClick="lanzarPuntuaciones"
                 android:text="@string/exit" />
         </TableRow>
     </TableLayout>
