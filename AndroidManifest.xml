@@ -14,16 +14,24 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:theme="@style/NoTitlebar"
             android:name="org.example.asteroides.Asteroides"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:theme="@style/NoTitlebar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AcercaDe" android:label="Acerca De ..." android:theme="@android:style/Theme.Dialog"></activity>
+        <activity
+            android:name=".AcercaDe"
+            android:label="Acerca De ..."
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <activity
+            android:name=".Preferencias"
+            android:label="Pantalla de preferencias" >
+        </activity>
     </application>
 
 </manifest>

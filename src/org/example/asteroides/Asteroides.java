@@ -18,6 +18,14 @@ public class Asteroides extends Activity {
 
 	}
 
+	public void lanzarPreferencias(View view) {
+
+		Intent i = new Intent(this, Preferencias.class);
+
+		startActivity(i);
+
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -37,7 +45,10 @@ public class Asteroides extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.acercaDe:
-			// lanzarAcercaDe(null);
+			lanzarAcercaDe(null);
+			break;
+		case R.id.config:
+			lanzarPreferencias(null);
 			break;
 		}
 		return true;

@@ -23,7 +23,8 @@
      style="@style/TextoAsteroides.Botones"
      android:layout_width="fill_parent"
      android:layout_height="wrap_content"
-     android:text="@string/configure" />
+     android:text="@string/configure" 
+     android:onClick="lanzarPreferencias"/>
 
  <Button
      style="@style/TextoAsteroides.Botones"
