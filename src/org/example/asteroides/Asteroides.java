@@ -9,6 +9,16 @@ import android.view.MenuItem;
 import android.view.View;
 
 public class Asteroides extends Activity {
+	
+	public static AlmacenPuntuaciones almacen = new AlmacenPuntuacionesArray();
+	
+	public void lanzarPuntuaciones(View view) {
+
+//		Intent i = new Intent(this, Puntuaciones.class);
+
+//		startActivity(i);
+
+		}
 
 	public void lanzarAcercaDe(View view) {
 
