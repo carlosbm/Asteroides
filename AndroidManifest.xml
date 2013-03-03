@@ -36,7 +36,7 @@
             android:name=".Puntuaciones"
             android:label="Lista de puntuaciones">
         </activity>
-        <activity android:name="Juego" android:hardwareAccelerated="true" android:screenOrientation="landscape" android:label="Juego" android:immersive="true" android:theme="@android:style/Theme.NoTitleBar.Fullscreen"></activity>
+        <activity android:name=".Juego" android:screenOrientation="landscape" android:label="Juego" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:hardwareAccelerated="true"></activity>
     </application>
 
 </manifest>
