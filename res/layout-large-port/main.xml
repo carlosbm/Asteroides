@@ -22,7 +22,8 @@
         android:layout_marginLeft="@dimen/activity_horizontal_margin_tablet"
         android:layout_marginRight="@dimen/activity_horizontal_margin_tablet"
         android:layout_marginTop="@dimen/activity_vertical_margin_tablet"
-        android:text="@string/play" />
+        android:text="@string/play"
+        android:onClick="lanzarJuego" />
 
     <Button
         style="@style/TextoAsteroides.Botones"
