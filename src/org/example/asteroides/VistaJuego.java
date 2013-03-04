@@ -1,6 +1,8 @@
 package org.example.asteroides;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.Vector;
 
 import android.content.Context;
@@ -106,20 +108,33 @@ public class VistaJuego extends View implements SensorEventListener {
 			giroNave = 0;
 			aceleracionNave = 0;
 			if (disparo) {
-				 ActivaMisil();
+				ActivaMisil();
 			}
 			break;
 		}
 		mX = x;
 		mY = y;
+		try {
+			Thread.sleep(PERIODO_PROCESO);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return true;
 	}
 
+	
 	// //// THREAD Y TIEMPO //////
 	// Thread encargado de procesar el juego
-	private ThreadJuego thread = new ThreadJuego();
+	// private ThreadJuego thread = new ThreadJuego();
+	
+	private static int FPS = 60;
+
 	// Cada cuanto queremos procesar cambios (ms)
-	private static int PERIODO_PROCESO = 20;
+	private static int PERIODO_PROCESO = 16;
+	static {
+	 PERIODO_PROCESO = 1000 / FPS;
+	}
 	// Cuando se realizó el último proceso
 	private long ultimoProceso = 0;
 	// //// NAVE //////
@@ -147,9 +162,9 @@ public class VistaJuego extends View implements SensorEventListener {
 	synchronized protected void actualizaFisica() {
 		long ahora = System.currentTimeMillis();
 		// No hagas nada si el período de proceso no se ha cumplido.
-		if (ultimoProceso + PERIODO_PROCESO > ahora) {
-			return;
-		}
+//		if (ultimoProceso + PERIODO_PROCESO > ahora) {
+//			return;
+//		}
 		// Para una ejecución en tiempo real calculamos retardo
 		double retardo = (ahora - ultimoProceso) / PERIODO_PROCESO;
 		ultimoProceso = ahora; // Para la próxima vez
@@ -206,6 +221,7 @@ public class VistaJuego extends View implements SensorEventListener {
 				asteroide.setPosY(Math.random() * (alto - asteroide.getAlto()));
 
 			} while (asteroide.distancia(nave) < (ancho + alto) / 5);
+			System.gc();
 
 		}
 
@@ -213,8 +229,8 @@ public class VistaJuego extends View implements SensorEventListener {
 		nave.setPosY(alto / 2);
 
 		ultimoProceso = System.currentTimeMillis();
-		thread.start();
-
+		// thread.start();
+		initTimer();
 	}
 
 	@Override
@@ -243,12 +259,18 @@ public class VistaJuego extends View implements SensorEventListener {
 	@Override
 	public void onSensorChanged(SensorEvent event) {
 		float valor = event.values[1] * 2;
-		
+
 		if (!hayValorInicial) {
 			valorInicial = valor;
 			hayValorInicial = true;
 		}
 		giroNave = (int) (valor - valorInicial) / 3;
+		try {
+			Thread.sleep(PERIODO_PROCESO);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void destruyeAsteroide(int i) {
@@ -270,20 +292,23 @@ public class VistaJuego extends View implements SensorEventListener {
 						/ Math.abs(misil.getIncY())) - 2;
 		misilActivo = true;
 	}
-
-	class ThreadJuego extends Thread {
-		@Override
-		public void run() {
-			while (true) {
-				actualizaFisica();
-				try {
-					Thread.sleep(PERIODO_PROCESO);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
+	private void initTimer() {
+		Timer timer = new Timer("fisicas", true);
+		timer.scheduleAtFixedRate(new ThreadJuego(), 1000, PERIODO_PROCESO);
 	}
 
+	class ThreadJuego extends TimerTask {
+		@Override
+		public void run() {
+			// timer.schedule(actualizaFisica(), when)
+			// while (true) {
+			actualizaFisica();
+			// try {
+			// Thread.sleep(PERIODO_PROCESO);
+			// } catch (InterruptedException e) {
+			// // TODO Auto-generated catch block
+			// e.printStackTrace();
+			// }
+		}
+	}
 }
