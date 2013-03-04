@@ -35,7 +35,7 @@ public class VistaJuego extends View implements SensorEventListener {
 		SensorManager mSensorManager = (SensorManager) context
 				.getSystemService(Context.SENSOR_SERVICE);
 		List<Sensor> listSensors = mSensorManager
-				.getSensorList(Sensor.TYPE_ORIENTATION);
+				.getSensorList(Sensor.TYPE_ACCELEROMETER);
 		if (!listSensors.isEmpty()) {
 			Sensor orientationSensor = listSensors.get(0);
 			mSensorManager.registerListener(this, orientationSensor,
@@ -242,7 +242,8 @@ public class VistaJuego extends View implements SensorEventListener {
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		float valor = event.values[1];
+		float valor = event.values[1] * 2;
+		
 		if (!hayValorInicial) {
 			valorInicial = valor;
 			hayValorInicial = true;
