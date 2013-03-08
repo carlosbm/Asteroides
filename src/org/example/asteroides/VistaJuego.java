@@ -119,7 +119,7 @@ public class VistaJuego extends View implements SensorEventListener {
 	// Thread encargado de procesar el juego
 	private ThreadJuego thread = new ThreadJuego();
 	// Cada cuanto queremos procesar cambios (ms)
-	private static int PERIODO_PROCESO = 20;
+	private static int PERIODO_PROCESO = 16;
 	// Cuando se realizó el último proceso
 	private long ultimoProceso = 0;
 	// //// NAVE //////
