@@ -284,6 +284,8 @@ public class VistaJuego extends View implements SensorEventListener {
 		misilActivo = true;
 	}
 	
+	
+	
 
 
 	class ThreadJuego extends Thread {

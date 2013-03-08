@@ -22,12 +22,13 @@ public class Asteroides extends Activity {
 	}
 
 	public void lanzarJuego(View view) {
+		// Media player tarda un rato en parar. Asi que lo paramos antes.
+		mp.pause();
 		Intent i = new Intent(this, Juego.class);
 		startActivity(i);
 	}
 
 	public void lanzarAcercaDe(View view) {
-
 		Intent i = new Intent(this, AcercaDe.class);
 
 		startActivity(i);
@@ -43,6 +44,24 @@ public class Asteroides extends Activity {
 	}
 
 	private static MediaPlayer mp;
+
+	@Override
+	protected void onSaveInstanceState(Bundle estadoGuardado) {
+		super.onSaveInstanceState(estadoGuardado);
+		if (mp != null) {
+			int pos = mp.getCurrentPosition();
+			estadoGuardado.putInt("posicion", pos);
+		}
+	}
+
+	@Override
+	protected void onRestoreInstanceState(Bundle estadoGuardado) {
+		super.onRestoreInstanceState(estadoGuardado);
+		if (estadoGuardado != null && mp != null) {
+			int pos = estadoGuardado.getInt("posicion");
+			mp.seekTo(pos);
+		}
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +114,6 @@ public class Asteroides extends Activity {
 	protected void onPause() {
 		Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show();
 		super.onPause();
-		
 
 	}
 
