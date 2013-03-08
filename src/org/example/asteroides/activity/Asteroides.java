@@ -1,10 +1,6 @@
 package org.example.asteroides.activity;
 
 import org.example.asteroides.R;
-import org.example.asteroides.R.id;
-import org.example.asteroides.R.layout;
-import org.example.asteroides.R.menu;
-import org.example.asteroides.R.raw;
 import org.example.asteroides.dataStore.AlmacenPuntuaciones;
 import org.example.asteroides.dataStore.AlmacenPuntuacionesArray;
 
@@ -21,6 +17,7 @@ import android.widget.Toast;
 public class Asteroides extends Activity {
 
 	public static AlmacenPuntuaciones almacen = new AlmacenPuntuacionesArray();
+	private static MediaPlayer mp;
 
 	public void lanzarPuntuaciones(View view) {
 
@@ -51,7 +48,6 @@ public class Asteroides extends Activity {
 
 	}
 
-	private static MediaPlayer mp;
 
 	@Override
 	protected void onSaveInstanceState(Bundle estadoGuardado) {
@@ -108,26 +104,26 @@ public class Asteroides extends Activity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		Toast.makeText(this, "onStart", Toast.LENGTH_SHORT).show();
+		// Toast.makeText(this, "onStart", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
+		// Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
 		mp.start();
 	}
 
 	@Override
 	protected void onPause() {
-		Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show();
+		// Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show();
 		super.onPause();
 
 	}
 
 	@Override
 	protected void onStop() {
-		Toast.makeText(this, "onStop", Toast.LENGTH_SHORT).show();
+		// Toast.makeText(this, "onStop", Toast.LENGTH_SHORT).show();
 		super.onStop();
 		mp.pause();
 	}
@@ -135,12 +131,12 @@ public class Asteroides extends Activity {
 	@Override
 	protected void onRestart() {
 		super.onRestart();
-		Toast.makeText(this, "onRestart", Toast.LENGTH_SHORT).show();
+		// Toast.makeText(this, "onRestart", Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
 	protected void onDestroy() {
-		Toast.makeText(this, "onDestroy", Toast.LENGTH_SHORT).show();
+		// Toast.makeText(this, "onDestroy", Toast.LENGTH_SHORT).show();
 		super.onDestroy();
 	}
 

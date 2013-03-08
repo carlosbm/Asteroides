@@ -317,6 +317,12 @@ public class VistaJuego extends View implements SensorEventListener {
 						} catch (Exception e) {
 						}
 					}
+				// Da un respiro a la CPU. Evita entrar antes de tiempo en actualizaFisica
+				try {
+					Thread.sleep(PERIODO_PROCESO);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				}
 			}
 		}
@@ -333,6 +339,5 @@ public class VistaJuego extends View implements SensorEventListener {
 	public int getGiroNave() {
 		return giroNave;
 	}
-	
 
 }

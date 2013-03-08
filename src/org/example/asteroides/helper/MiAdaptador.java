@@ -3,9 +3,6 @@ package org.example.asteroides.helper;
 import java.util.Vector;
 
 import org.example.asteroides.R;
-import org.example.asteroides.R.drawable;
-import org.example.asteroides.R.id;
-import org.example.asteroides.R.layout;
 
 import android.app.Activity;
 import android.view.LayoutInflater;

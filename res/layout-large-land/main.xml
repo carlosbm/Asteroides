@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/degradado"
     android:orientation="vertical"
     android:padding="30dip" >
 
@@ -28,8 +29,8 @@
                 android:layout_marginLeft="@dimen/activity_horizontal_margin_tablet"
                 android:layout_marginRight="@dimen/activity_horizontal_margin_tablet"
                 android:layout_marginTop="@dimen/activity_vertical_margin_tablet"
-                android:text="@string/play"
-                android:onClick="lanzarJuego" />
+                android:onClick="lanzarJuego"
+                android:text="@string/play" />
 
             <Button
                 android:layout_width="match_parent"
@@ -63,7 +64,6 @@
                 android:layout_marginTop="@dimen/activity_vertical_margin_tablet"
                 android:onClick="lanzarPuntuaciones"
                 android:text="@string/exit" />
-
         </TableRow>
     </TableLayout>
 

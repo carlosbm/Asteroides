@@ -3,42 +3,43 @@
     style="@style/TextoAsteroides"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/degradado"
     android:orientation="vertical"
     android:padding="30dip" >
 
- <TextView
-     android:layout_width="fill_parent"
-     android:layout_height="wrap_content"
-     android:gravity="center"
-     android:text="@string/title"
-     android:textSize="@dimen/activity_horizontal_margin_tablet" />
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/title"
+        android:textSize="@dimen/activity_horizontal_margin_tablet" />
 
- <Button
-     style="@style/TextoAsteroides.Botones"
-     android:layout_width="fill_parent"
-     android:layout_height="wrap_content"
-     android:text="@string/play"
-     android:onClick="lanzarJuego" />
+    <Button
+        style="@style/TextoAsteroides.Botones"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="lanzarJuego"
+        android:text="@string/play" />
 
- <Button
-     style="@style/TextoAsteroides.Botones"
-     android:layout_width="fill_parent"
-     android:layout_height="wrap_content"
-     android:text="@string/configure" 
-     android:onClick="lanzarPreferencias"/>
+    <Button
+        style="@style/TextoAsteroides.Botones"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="lanzarPreferencias"
+        android:text="@string/configure" />
 
- <Button
-     style="@style/TextoAsteroides.Botones"
-     android:layout_width="fill_parent"
-     android:layout_height="wrap_content"
-     android:onClick="lanzarAcercaDe"
-     android:text="@string/about" />
+    <Button
+        style="@style/TextoAsteroides.Botones"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="lanzarAcercaDe"
+        android:text="@string/about" />
 
- <Button
-     style="@style/TextoAsteroides.Botones"
-     android:layout_width="fill_parent"
-     android:layout_height="wrap_content"
-     android:onClick="lanzarPuntuaciones"
-     android:text="@string/exit" />
+    <Button
+        style="@style/TextoAsteroides.Botones"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:onClick="lanzarPuntuaciones"
+        android:text="@string/exit" />
 
 </LinearLayout>
