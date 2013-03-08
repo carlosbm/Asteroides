@@ -3,8 +3,8 @@ package org.example.asteroides.view;
 import java.util.List;
 import java.util.Vector;
 
-import org.example.asteroides.Grafico;
 import org.example.asteroides.R;
+import org.example.asteroides.helper.Grafico;
 
 import android.content.Context;
 import android.graphics.Canvas;
