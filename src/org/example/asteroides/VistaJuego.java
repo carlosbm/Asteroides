@@ -27,20 +27,16 @@ public class VistaJuego extends View implements SensorEventListener {
 	private static int PASO_VELOCIDAD_MISIL = 12;
 	private boolean misilActivo = false;
 	private int tiempoMisil;
-
+	
+	// ///// Sensor //////
+	private static SensorManager mSensorManager;
+	
+	// ///// Context //////
+	private Context context;
 	public VistaJuego(Context context, AttributeSet attrs) {
 
 		super(context, attrs);
-		// Registrar el sensor de orientacion
-		SensorManager mSensorManager = (SensorManager) context
-				.getSystemService(Context.SENSOR_SERVICE);
-		List<Sensor> listSensors = mSensorManager
-				.getSensorList(Sensor.TYPE_ACCELEROMETER);
-		if (!listSensors.isEmpty()) {
-			Sensor orientationSensor = listSensors.get(0);
-			mSensorManager.registerListener(this, orientationSensor,
-					SensorManager.SENSOR_DELAY_GAME);
-		}
+		this.context = context;
 
 		Drawable drawableNave, drawableAsteroide, drawableMisil;
 
@@ -81,6 +77,23 @@ public class VistaJuego extends View implements SensorEventListener {
 		drawableMisil = dMisil;
 
 	}
+	
+	
+	public void registrarSensorOrientacion() {
+		registrarSensorOrientacion(context);
+	}
+
+	private void registrarSensorOrientacion(Context context) {
+		mSensorManager = (SensorManager) context
+				.getSystemService(Context.SENSOR_SERVICE);
+		List<Sensor> listSensors = mSensorManager
+				.getSensorList(Sensor.TYPE_ACCELEROMETER);
+		if (!listSensors.isEmpty()) {
+			Sensor orientationSensor = listSensors.get(0);
+			mSensorManager.registerListener(this, orientationSensor,
+					SensorManager.SENSOR_DELAY_GAME);
+		}
+	}
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
@@ -106,7 +119,7 @@ public class VistaJuego extends View implements SensorEventListener {
 			giroNave = 0;
 			aceleracionNave = 0;
 			if (disparo) {
-				 ActivaMisil();
+				ActivaMisil();
 			}
 			break;
 		}
@@ -243,7 +256,7 @@ public class VistaJuego extends View implements SensorEventListener {
 	@Override
 	public void onSensorChanged(SensorEvent event) {
 		float valor = event.values[1] * 2;
-		
+
 		if (!hayValorInicial) {
 			valorInicial = valor;
 			hayValorInicial = true;
@@ -270,20 +283,53 @@ public class VistaJuego extends View implements SensorEventListener {
 						/ Math.abs(misil.getIncY())) - 2;
 		misilActivo = true;
 	}
+	
+
 
 	class ThreadJuego extends Thread {
+		private boolean pausa, corriendo;
+
+		public synchronized void pausar() {
+			pausa = true;
+		}
+
+		public synchronized void reanudar() {
+			pausa = false;
+			notify();
+		}
+
+		public void detener() {
+			corriendo = false;
+			if (pausa)
+				reanudar();
+		}
+
 		@Override
 		public void run() {
-			while (true) {
+			corriendo = true;
+			while (corriendo) {
 				actualizaFisica();
-				try {
-					Thread.sleep(PERIODO_PROCESO);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				synchronized (this) {
+					while (pausa) {
+						try {
+							wait();
+						} catch (Exception e) {
+						}
+					}
 				}
 			}
 		}
 	}
+
+	public ThreadJuego getThread() {
+		return thread;
+	}
+
+	public static SensorManager getmSensorManager() {
+		return mSensorManager;
+	}
+	
+	
+	
 
 }

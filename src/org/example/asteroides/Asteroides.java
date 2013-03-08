@@ -2,23 +2,25 @@ package org.example.asteroides;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class Asteroides extends Activity {
-	
+
 	public static AlmacenPuntuaciones almacen = new AlmacenPuntuacionesArray();
-	
+
 	public void lanzarPuntuaciones(View view) {
 
 		Intent i = new Intent(this, Puntuaciones.class);
 		startActivity(i);
 
-		}
-	
+	}
+
 	public void lanzarJuego(View view) {
 		Intent i = new Intent(this, Juego.class);
 		startActivity(i);
@@ -40,10 +42,17 @@ public class Asteroides extends Activity {
 
 	}
 
+	private static MediaPlayer mp;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show();
+
+		mp = MediaPlayer.create(this, R.raw.audio);
+		mp.start();
+
 	}
 
 	@Override
@@ -67,6 +76,46 @@ public class Asteroides extends Activity {
 		}
 		return true;
 		/** true -> consumimos el item, no se propaga */
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		Toast.makeText(this, "onStart", Toast.LENGTH_SHORT).show();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
+		mp.start();
+	}
+
+	@Override
+	protected void onPause() {
+		Toast.makeText(this, "onPause", Toast.LENGTH_SHORT).show();
+		super.onPause();
+		
+
+	}
+
+	@Override
+	protected void onStop() {
+		Toast.makeText(this, "onStop", Toast.LENGTH_SHORT).show();
+		super.onStop();
+		mp.pause();
+	}
+
+	@Override
+	protected void onRestart() {
+		super.onRestart();
+		Toast.makeText(this, "onRestart", Toast.LENGTH_SHORT).show();
+	}
+
+	@Override
+	protected void onDestroy() {
+		Toast.makeText(this, "onDestroy", Toast.LENGTH_SHORT).show();
+		super.onDestroy();
 	}
 
 }
