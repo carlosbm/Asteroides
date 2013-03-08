@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
-class Grafico {
+public class Grafico {
 
 	private Drawable drawable; // Imagen que dibujaremos
 

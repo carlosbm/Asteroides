@@ -1,4 +1,8 @@
-package org.example.asteroides;
+package org.example.asteroides.activity;
+
+import org.example.asteroides.MiAdaptador;
+import org.example.asteroides.R;
+import org.example.asteroides.R.layout;
 
 import android.app.ListActivity;
 import android.os.Bundle;

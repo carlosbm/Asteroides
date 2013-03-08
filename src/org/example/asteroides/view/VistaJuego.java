@@ -1,7 +1,10 @@
-package org.example.asteroides;
+package org.example.asteroides.view;
 
 import java.util.List;
 import java.util.Vector;
+
+import org.example.asteroides.Grafico;
+import org.example.asteroides.R;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -27,12 +30,13 @@ public class VistaJuego extends View implements SensorEventListener {
 	private static int PASO_VELOCIDAD_MISIL = 12;
 	private boolean misilActivo = false;
 	private int tiempoMisil;
-	
+
 	// ///// Sensor //////
 	private static SensorManager mSensorManager;
-	
+
 	// ///// Context //////
 	private Context context;
+
 	public VistaJuego(Context context, AttributeSet attrs) {
 
 		super(context, attrs);
@@ -77,8 +81,7 @@ public class VistaJuego extends View implements SensorEventListener {
 		drawableMisil = dMisil;
 
 	}
-	
-	
+
 	public void registrarSensorOrientacion() {
 		registrarSensorOrientacion(context);
 	}
@@ -283,12 +286,8 @@ public class VistaJuego extends View implements SensorEventListener {
 						/ Math.abs(misil.getIncY())) - 2;
 		misilActivo = true;
 	}
-	
-	
-	
 
-
-	class ThreadJuego extends Thread {
+	public class ThreadJuego extends Thread {
 		private boolean pausa, corriendo;
 
 		public synchronized void pausar() {
@@ -330,8 +329,10 @@ public class VistaJuego extends View implements SensorEventListener {
 	public static SensorManager getmSensorManager() {
 		return mSensorManager;
 	}
-	
-	
+
+	public int getGiroNave() {
+		return giroNave;
+	}
 	
 
 }

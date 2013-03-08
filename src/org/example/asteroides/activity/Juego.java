@@ -1,4 +1,9 @@
-package org.example.asteroides;
+package org.example.asteroides.activity;
+
+import org.example.asteroides.R;
+import org.example.asteroides.R.id;
+import org.example.asteroides.R.layout;
+import org.example.asteroides.view.VistaJuego;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -19,9 +24,8 @@ public class Juego extends Activity {
 	protected void onPause() {
 		super.onPause();
 		vistaJuego.getThread().pausar();
-		
-		VistaJuego.getmSensorManager().unregisterListener(vistaJuego);
 
+		VistaJuego.getmSensorManager().unregisterListener(vistaJuego);
 
 	}
 

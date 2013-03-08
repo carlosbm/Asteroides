@@ -1,4 +1,7 @@
-package org.example.asteroides;
+package org.example.asteroides.activity;
+
+import org.example.asteroides.R;
+import org.example.asteroides.R.xml;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;

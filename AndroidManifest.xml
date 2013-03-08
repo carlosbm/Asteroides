@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="org.example.asteroides.Asteroides"
+            android:name="org.example.asteroides.activity.Asteroides"
             android:label="@string/app_name"
             android:theme="@style/NoTitlebar" >
             <intent-filter>
@@ -24,19 +24,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AcercaDe"
+            android:name="org.example.asteroides.activity.AcercaDe"
             android:label="Acerca De ..."
             android:theme="@android:style/Theme.Dialog" >
         </activity>
         <activity
-            android:name=".Preferencias"
+            android:name="org.example.asteroides.activity.Preferencias"
             android:label="Pantalla de preferencias" >
         </activity>
-        <activity 
-            android:name=".Puntuaciones"
-            android:label="Lista de puntuaciones">
+        <activity
+            android:name="org.example.asteroides.activity.Puntuaciones"
+            android:label="Lista de puntuaciones" >
         </activity>
-        <activity android:name=".Juego" android:screenOrientation="landscape" android:label="Juego" android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:hardwareAccelerated="true"></activity>
+        <activity
+            android:name="org.example.asteroides.activity.Juego"
+            android:hardwareAccelerated="true"
+            android:label="Juego"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+        </activity>
     </application>
 
 </manifest>
