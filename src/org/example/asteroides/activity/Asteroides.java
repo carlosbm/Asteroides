@@ -124,8 +124,8 @@ public class Asteroides extends Activity {
 	@Override
 	protected void onStop() {
 		// Toast.makeText(this, "onStop", Toast.LENGTH_SHORT).show();
-		super.onStop();
 		mp.pause();
+		super.onStop();
 	}
 
 	@Override
