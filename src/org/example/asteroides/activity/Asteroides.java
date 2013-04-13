@@ -26,26 +26,27 @@ public class Asteroides extends Activity {
 		startActivityForResult(i, 1);
 
 	}
-	@Override 
-	protected void onActivityResult (int requestCode, int  resultCode,
-	                                      Intent data){
-	    super.onActivityResult(requestCode, resultCode, data);
-	    if (requestCode==1234 & resultCode==RESULT_OK & data!=null) {
-	       int puntuacion = data.getExtras().getInt("puntuacion");
-	       String nombre = "Yo";
-	       // Mejor leerlo desde un Dialog o una nueva actividad                       //AlertDialog.Builder
-	       almacen.guardarPuntuacion(puntuacion, nombre,
-	                       System.currentTimeMillis());
-	       lanzarPuntuaciones(null);
-	    }
-	 }
 
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == 1234 & resultCode == RESULT_OK & data != null) {
+			int puntuacion = data.getExtras().getInt("puntuacion");
+			String nombre = "Yo";
+			// Mejor leerlo desde un Dialog o una nueva actividad
+			// //AlertDialog.Builder
+			almacen.guardarPuntuacion(puntuacion, nombre,
+					System.currentTimeMillis());
+			lanzarPuntuaciones(null);
+		}
+	}
 
 	public void lanzarJuego(View view) {
 		Intent i = new Intent(this, Juego.class);
 		startActivityForResult(i, 1234);
 		// Media player tarda un rato en parar. Asi que lo paramos antes.
-		mp.stop();
+		if (mp.isPlaying())
+			mp.pause();
 	}
 
 	public void lanzarAcercaDe(View view) {
@@ -139,7 +140,8 @@ public class Asteroides extends Activity {
 	@Override
 	protected void onStop() {
 		// Toast.makeText(this, "onStop", Toast.LENGTH_SHORT).show();
-		mp.pause();
+		if (mp.isPlaying())
+			mp.pause();
 		super.onStop();
 	}
 
