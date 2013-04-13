@@ -6,7 +6,9 @@ import java.util.Vector;
 import org.example.asteroides.R;
 import org.example.asteroides.helper.Grafico;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint.Style;
@@ -17,6 +19,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,6 +27,8 @@ import android.view.View;
 public class VistaJuego extends View implements SensorEventListener {
 	private float mX = 0, mY = 0;
 	private boolean disparo = false;
+	private int puntuacion = 0;
+	private Activity padre;
 
 	// //// MISIL //////
 	private Grafico misil;
@@ -80,6 +85,15 @@ public class VistaJuego extends View implements SensorEventListener {
 		dMisil.setIntrinsicHeight(3);
 		drawableMisil = dMisil;
 
+	}
+
+	private void salir() {
+		Bundle bundle = new Bundle();
+		bundle.putInt("puntuacion", puntuacion);
+		Intent intent = new Intent();
+		intent.putExtras(bundle);
+		padre.setResult(Activity.RESULT_OK, intent);
+		padre.finish();
 	}
 
 	public void registrarSensorOrientacion() {
@@ -185,6 +199,9 @@ public class VistaJuego extends View implements SensorEventListener {
 		nave.incrementaPos(retardo);
 		for (Grafico asteroide : Asteroides) {
 			asteroide.incrementaPos(retardo);
+			if (asteroide.verificaColision(nave)) {
+				salir();
+			}
 		}
 		// Actualizamos posición de misil
 
@@ -201,7 +218,6 @@ public class VistaJuego extends View implements SensorEventListener {
 					}
 			}
 		}
-
 	}
 
 	@Override
@@ -270,6 +286,11 @@ public class VistaJuego extends View implements SensorEventListener {
 	private void destruyeAsteroide(int i) {
 		Asteroides.remove(i);
 		misilActivo = false;
+		puntuacion = puntuacion + 1000;
+
+		if (Asteroides.isEmpty()) {
+			salir();
+		}
 	}
 
 	private void ActivaMisil() {
@@ -317,12 +338,13 @@ public class VistaJuego extends View implements SensorEventListener {
 						} catch (Exception e) {
 						}
 					}
-				// Da un respiro a la CPU. Evita entrar antes de tiempo en actualizaFisica
-				try {
-					Thread.sleep(PERIODO_PROCESO);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+					// Da un respiro a la CPU. Evita entrar antes de tiempo en
+					// actualizaFisica
+					try {
+						Thread.sleep(PERIODO_PROCESO);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
@@ -338,6 +360,10 @@ public class VistaJuego extends View implements SensorEventListener {
 
 	public int getGiroNave() {
 		return giroNave;
+	}
+
+	public void setPadre(Activity padre) {
+		this.padre = padre;
 	}
 
 }

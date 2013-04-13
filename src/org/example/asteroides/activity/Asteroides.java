@@ -3,6 +3,7 @@ package org.example.asteroides.activity;
 import org.example.asteroides.R;
 import org.example.asteroides.dataStore.AlmacenPuntuaciones;
 import org.example.asteroides.dataStore.AlmacenPuntuacionesArray;
+import org.example.asteroides.dataStore.AlmacenPuntuacionesPreferencias;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,15 +23,29 @@ public class Asteroides extends Activity {
 	public void lanzarPuntuaciones(View view) {
 
 		Intent i = new Intent(this, Puntuaciones.class);
-		startActivity(i);
+		startActivityForResult(i, 1);
 
 	}
+	@Override 
+	protected void onActivityResult (int requestCode, int  resultCode,
+	                                      Intent data){
+	    super.onActivityResult(requestCode, resultCode, data);
+	    if (requestCode==1234 & resultCode==RESULT_OK & data!=null) {
+	       int puntuacion = data.getExtras().getInt("puntuacion");
+	       String nombre = "Yo";
+	       // Mejor leerlo desde un Dialog o una nueva actividad                       //AlertDialog.Builder
+	       almacen.guardarPuntuacion(puntuacion, nombre,
+	                       System.currentTimeMillis());
+	       lanzarPuntuaciones(null);
+	    }
+	 }
+
 
 	public void lanzarJuego(View view) {
-		// Media player tarda un rato en parar. Asi que lo paramos antes.
-		mp.pause();
 		Intent i = new Intent(this, Juego.class);
-		startActivity(i);
+		startActivityForResult(i, 1234);
+		// Media player tarda un rato en parar. Asi que lo paramos antes.
+		mp.stop();
 	}
 
 	public void lanzarAcercaDe(View view) {
@@ -47,7 +62,6 @@ public class Asteroides extends Activity {
 		startActivity(i);
 
 	}
-
 
 	@Override
 	protected void onSaveInstanceState(Bundle estadoGuardado) {
@@ -75,6 +89,7 @@ public class Asteroides extends Activity {
 
 		mp = MediaPlayer.create(this, R.raw.audio);
 		mp.start();
+		almacen = new AlmacenPuntuacionesPreferencias(this);
 
 	}
 
