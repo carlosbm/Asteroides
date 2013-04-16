@@ -3,6 +3,7 @@ package org.example.asteroides.activity;
 import org.example.asteroides.R;
 import org.example.asteroides.dataStore.AlmacenPuntuaciones;
 import org.example.asteroides.dataStore.AlmacenPuntuacionesArray;
+import org.example.asteroides.dataStore.AlmacenPuntuacionesFicheroInterno;
 import org.example.asteroides.dataStore.AlmacenPuntuacionesPreferencias;
 
 import android.app.Activity;
@@ -85,12 +86,12 @@ public class Asteroides extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		almacen = new AlmacenPuntuacionesFicheroInterno(this);
 		setContentView(R.layout.main);
 		Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show();
 
 		mp = MediaPlayer.create(this, R.raw.audio);
 		mp.start();
-		almacen = new AlmacenPuntuacionesPreferencias(this);
 
 	}
 
