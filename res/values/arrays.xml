@@ -16,12 +16,16 @@
         <item>Array</item>
         <item>Preferencias</item>
         <item>Fichero en memoria interna</item>
+        <item>Fichero en memoria externa</item>
+        <item>Fichero de recursos</item>
     </string-array>
     
     <string-array name="tiposPuntuacionesValores">
         <item>0</item>
         <item>1</item>
         <item>2</item>
+        <item>3</item>
+        <item>4</item>
     </string-array>
 
 </resources>

@@ -3,8 +3,10 @@ package org.example.asteroides.activity;
 import org.example.asteroides.R;
 import org.example.asteroides.dataStore.AlmacenPuntuaciones;
 import org.example.asteroides.dataStore.AlmacenPuntuacionesArray;
+import org.example.asteroides.dataStore.AlmacenPuntuacionesFicheroExterno;
 import org.example.asteroides.dataStore.AlmacenPuntuacionesFicheroInterno;
 import org.example.asteroides.dataStore.AlmacenPuntuacionesPreferencias;
+import org.example.asteroides.dataStore.AlmacenPuntuacionesRecurso;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -101,7 +103,12 @@ public class Asteroides extends Activity {
 		case 2:
 			almacen = new AlmacenPuntuacionesFicheroInterno(this);
 			break;
-			
+		case 3:
+			almacen = new AlmacenPuntuacionesFicheroExterno(this);
+			break;
+		case 4:
+			almacen = new AlmacenPuntuacionesRecurso(this);
+			break;			
 		}
 
 		return almacen;
