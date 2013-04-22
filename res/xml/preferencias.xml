@@ -36,4 +36,17 @@
     android:summary="En cuantos trozos se divide un asteroide"
 
     android:defaultValue="3"/>
+   <ListPreference
+
+    android:key="puntuaciones"
+
+    android:title="Tipo de almacén puntuaciones"
+
+    android:summary="Se escoge el lugar método para guardar las puntuaciones"
+
+    android:entries="@array/tiposPuntuaciones"
+
+    android:entryValues="@array/tiposPuntuacionesValores"
+
+    android:defaultValue="1"/>
 </PreferenceScreen>

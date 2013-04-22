@@ -8,8 +8,10 @@ import org.example.asteroides.dataStore.AlmacenPuntuacionesPreferencias;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -83,10 +85,32 @@ public class Asteroides extends Activity {
 		}
 	}
 
+	protected AlmacenPuntuaciones almacenPreferencias() {
+		SharedPreferences preferences = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		AlmacenPuntuaciones almacen = null;
+		String puntuaciones = preferences.getString("puntuaciones", "2");
+		int puntuacionInt = Integer.parseInt(puntuaciones);
+		switch (puntuacionInt) {
+		case 0:
+			almacen = new AlmacenPuntuacionesArray();
+			break;
+		case 1:
+			almacen = new AlmacenPuntuacionesPreferencias(this);
+			break;
+		case 2:
+			almacen = new AlmacenPuntuacionesFicheroInterno(this);
+			break;
+			
+		}
+
+		return almacen;
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		almacen = new AlmacenPuntuacionesFicheroInterno(this);
+	//	almacen = almacenPreferencias(); We better load it everytime activity resumes
 		setContentView(R.layout.main);
 		Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show();
 
@@ -127,6 +151,7 @@ public class Asteroides extends Activity {
 	@Override
 	protected void onResume() {
 		super.onResume();
+		almacen = almacenPreferencias();
 		// Toast.makeText(this, "onResume", Toast.LENGTH_SHORT).show();
 		mp.start();
 	}
