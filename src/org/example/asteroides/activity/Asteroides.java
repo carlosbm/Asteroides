@@ -7,6 +7,7 @@ import org.example.asteroides.dataStore.AlmacenPuntuacionesFicheroExterno;
 import org.example.asteroides.dataStore.AlmacenPuntuacionesFicheroInterno;
 import org.example.asteroides.dataStore.AlmacenPuntuacionesPreferencias;
 import org.example.asteroides.dataStore.AlmacenPuntuacionesRecurso;
+import org.example.asteroides.dataStore.AlmacenPuntuacionesXML_SAX;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -109,8 +110,10 @@ public class Asteroides extends Activity {
 		case 4:
 			almacen = new AlmacenPuntuacionesRecurso(this);
 			break;			
+		case 5:
+			almacen = new AlmacenPuntuacionesXML_SAX(this);
+			break;
 		}
-
 		return almacen;
 	}
 
