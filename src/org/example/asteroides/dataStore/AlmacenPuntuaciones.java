@@ -8,4 +8,6 @@ public interface AlmacenPuntuaciones {
 
 	public Vector<String> listaPuntuaciones(int cantidad);
 
+	
+
 }

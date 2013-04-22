@@ -7,6 +7,7 @@ import org.example.asteroides.dataStore.AlmacenPuntuacionesFicheroExterno;
 import org.example.asteroides.dataStore.AlmacenPuntuacionesFicheroInterno;
 import org.example.asteroides.dataStore.AlmacenPuntuacionesPreferencias;
 import org.example.asteroides.dataStore.AlmacenPuntuacionesRecurso;
+import org.example.asteroides.dataStore.AlmacenPuntuacionesSQLite;
 import org.example.asteroides.dataStore.AlmacenPuntuacionesXML_SAX;
 
 import android.app.Activity;
@@ -109,9 +110,12 @@ public class Asteroides extends Activity {
 			break;
 		case 4:
 			almacen = new AlmacenPuntuacionesRecurso(this);
-			break;			
+			break;
 		case 5:
 			almacen = new AlmacenPuntuacionesXML_SAX(this);
+			break;
+		case 6:
+			almacen = new AlmacenPuntuacionesSQLite(this);
 			break;
 		}
 		return almacen;
@@ -120,7 +124,8 @@ public class Asteroides extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	//	almacen = almacenPreferencias(); We better load it everytime activity resumes
+		// almacen = almacenPreferencias(); We better load it everytime activity
+		// resumes
 		setContentView(R.layout.main);
 		Toast.makeText(this, "onCreate", Toast.LENGTH_SHORT).show();
 
